@@ -1,0 +1,414 @@
+---
+title: "Final Report"
+output: 
+  html_document:
+    df_print: paged
+    code_foldering: hide
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+
+params:
+  HealthSystem: NA
+  Q1FU: NA
+  Q1FU_other: NA
+  Q2FU: NA 
+  Q2FU_other: NA 
+  Q3FU: NA
+  Q4FU: NA
+   
+  FemFUAge1_total: NA
+  FemFUAge1_dose1: NA 
+  FemFUAge1_dose2: NA
+  MenFUAge1_total: NA
+  MenFUAge1_dose1: NA 
+  MenFUAge1_dose2: NA
+  BothFUAge1_total: NA
+  BothFUAge1_dose1: NA
+  BothFUAge1_dose2: NA
+      
+  FemFUAge2_total: NA
+  FemFUAge2_dose1: NA
+  FemFUAge2_dose2: NA
+  FemFUAge2_mening: NA
+  FemFUAge2_tdap: NA
+  MenFUAge2_total: NA
+  MenFUAge2_dose1: NA
+  MenFUAge2_dose2: NA
+  MenFUAge2_mening: NA
+  MenFUAge2_tdap: NA
+  BothFUAge2_total: NA
+  BothFUAge2_dose1: NA
+  BothFUAge2_dose2: NA
+  BothFUAge2_mening: NA
+  BothFUAge2_tdap: NA
+      
+  FemFUAge3_total: NA
+  FemFUAge3_dose1: NA
+  FemFUAge3_dose2: NA
+  FemFUAge3_mening: NA
+  FemFUAge3_tdap: NA
+  MenFUAge3_total: NA
+  MenFUAge3_dose1: NA
+  MenFUAge3_dose2: NA
+  MenFUAge3_mening: NA
+  MenFUAge3_tdap: NA
+  BothFUAge3_total: NA
+  BothFUAge3_dose1: NA
+  BothFUAge3_dose2: NA
+  BothFUAge3_mening: NA
+  BothFUAge3_tdap: NA
+  
+  Q5FU: NA
+  Q5FU_text: NA
+  Q6FU: NA
+  Q7FU: NA
+  Q7FU_other: NA
+  Q8FU: NA 
+  Q8FU_other: NA
+  Q9FU: NA
+  Q9FU_other: NA
+  Q10FU: NA
+  Q11FU: NA
+  Q12FU: NA 
+  Q13FU: NA
+  Q13FU_other: NA
+  Q14FU: NA
+  Q14FU_other: NA
+  Q15FU: NA
+  Q16FU: NA
+  Q17FU: NA
+  Q18FU: NA
+  Q18FU_more: NA
+  
+  
+
+---
+
+<style type="text/css">
+
+body{ /* Whole document */
+      font-size: 16px;
+      color: Gray;
+      }
+h1.title{
+      font-size: 32px;
+      color: Black;
+      }
+h1{
+      font-size: 42px;
+      color: Black;
+      }
+h2{ 
+      font-size: 28px;
+      color: DarkRed;
+      }
+h3{ 
+      font-size: 28px;
+      color: Red;
+      }
+h5{ 
+      font-size: 16px;
+      color: Gray;
+      }      
+h6{ 
+      font-size: 16px;
+      color: Black;
+      font-weight: bold;
+      }
+pre{ /* Code block- determines spacing between lines */
+      font-size: 14px;
+      }   
+code.r{
+  font-size: 16px;
+  color: Gray
+  font-family: "Times New Roman", Times, serif;
+  margin-bottom:3em;
+}
+p:first-of-type{
+      font-style: italic;
+      color: Gray;
+      font-size: 16px;
+}
+.blackbox{
+  padding: 1em 0em 0em 1em;
+  color: white;
+  border: 2px solid gray;
+  border-radius: 10px;
+}
+.graybox{
+  padding: 1em 1em 1em 1em;
+  color: gray;
+  border: 2px solid blue;
+  border-radius: 10px;
+}
+.yellowhighlight{
+  padding: 1em 1em 1em 1em;
+  color: yellow;
+  border: 5px solid yellow;
+  border-radius: 10px;
+}
+</style>
+
+```{css, echo=FALSE}
+.answers {
+  background-color: white;
+  border: 3px solid black;
+  font-weight: bold;
+  color: light-gray;
+  font-family: "Times New Roman", Times, serif;
+}
+```
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(comment = NA)
+knitr::opts_chunk$set(opts.label="kill_prefix")
+```
+
+
+\ 
+\  
+
+\  
+
+
+<center><h1> **`r toupper(params$HealthSystem)`** </h1></center>
+
+\ 
+\  
+<h5>This is an html print-out of the final questionnaire on the Mission HPV dashboard. Please fill out all answers on the dashboard form and submit your responses there; this report is purely for your records and internal distribution. 
+<br><br>
+If you would like to print this as a pdf, right click on this screen to print. In the print options, select 'Save as pdf' and save the file to your preferred location. <br><br>
+Jennifer & team- let me know what other information you'd like here :)  
+</h5>
+
+\  
+\  
+
+### Updated Rates 
+<h5>Below were your provided responses for the demographics section of the Baseline Questionnaire. If you do not see anything listed, you have not yet provided that response.</h5>  
+
+\  
+
+:::: {.graybox data-latex=""}
+###### 1. How are you defining your active patient populations?
+::: {.blackbox data-latex=""}
+`r params$Q1FU`
+:::
+
+###### 1. Other specified (if applicable)
+::: {.blackbox data-latex=""}
+`r params$Q1FU_other`
+:::
+::::
+
+\  
+
+:::: {.graybox data-latex=""}
+###### 2. For what ages are you reporting?
+::: {.blackbox data-latex=""}
+`r params$Q2FU`
+:::
+
+###### 2. Other specified (if applicable)
+::: {.blackbox data-latex=""}
+`r params$Q2FU_other`
+:::
+::::
+
+\  
+
+###### 3. Can you pull rate data by sex?
+::: {.blackbox data-latex=""}
+`r params$Q3FU`
+:::
+
+\  
+
+###### Ages 9-10
+```{r, echo=FALSE, results="asis"}
+rates1 <- data.frame(rbind(c(params$FemFUAge1_total, params$FemFUAge1_dose1, params$FemFUAge1_dose2),
+                           c(params$MenFUAge1_total, params$MenFUAge1_dose1, params$MenFUAge1_dose2),
+                           c(params$BothFUAge1_total, params$BothFUAge1_dose1, params$BothFUAge1_dose2)))
+
+rownames(rates1)<- c("Females", "Males", "Combined")
+colnames(rates1)<- c("Total", "1+ dose", "2 doses")
+knitr::kable(rates1)
+```
+
+###### FUAges 11-12
+```{r, echo=FALSE, results="asis"}
+rates2 <- data.frame(rbind(c(params$FemFUAge2_total, params$FemFUAge2_dose1, params$FemFUAge2_dose2, params$FemFUAge2_mening, params$FemFUAge2_tdap),
+                           c(params$MenFUAge2_total, params$MenFUAge2_dose1, params$MenFUAge2_dose2, params$MenFUAge2_mening, params$MenFUAge2_tdap),
+                           c(params$BothFUAge2_total, params$BothFUAge2_dose1, params$BothFUAge2_dose2, params$BothFUAge2_mening, params$BothFUAge2_tdap)))
+
+rownames(rates2)<- c("Females", "Males", "Combined")
+colnames(rates2)<- c("Total", "1+ dose", "2 doses", "Meningococcus", "Tdap")
+knitr::kable(rates2)
+```
+
+###### FUAges 13
+```{r, echo=FALSE, results="asis"}
+rates3 <- data.frame(rbind(c(params$FemFUAge3_total, params$FemFUAge3_dose1, params$FemFUAge3_dose2, params$FemFUAge3_mening, params$FemFUAge3_tdap),
+                           c(params$MenFUAge3_total, params$MenFUAge3_dose1, params$MenFUAge3_dose2, params$MenFUAge3_mening, params$MenFUAge3_tdap),
+                           c(params$BothFUAge3_total, params$BothFUAge3_dose1, params$BothFUAge3_dose2, params$BothFUAge3_mening, params$BothFUAge3_tdap)))
+
+rownames(rates3)<- c("Females", "Males", "Combined")
+colnames(rates3)<- c("Total", "1+ dose", "2 doses", "Meningococcus", "Tdap")
+knitr::kable(rates3)
+```
+
+\  
+
+###### 4. Please share anything else about your baseline data you'd like us to know:
+::: {.blackbox data-latex=""}
+`r params$Q4FU`
+:::
+
+\  
+\  
+
+### Additional Info
+
+\  
+
+:::: {.graybox data-latex=""}
+###### 5. Did you use the same primary data source for all pulls?
+::: {.blackbox data-latex=""}
+`r params$Q5FU`
+:::
+
+###### 5. Additional text
+::: {.blackbox data-latex=""}
+`r params$Q5FU_text`
+:::
+::::
+
+\  
+
+###### 6. Did we meet our project goals?
+::: {.blackbox data-latex=""}
+`r params$Q6FU`
+:::
+
+\  
+
+:::: {.graybox data-latex=""}
+###### 7. We conducted or participated in the following HPV vaccination training and education activities in 2020: *(check all that apply)*
+::: {.blackbox data-latex=""}
+`r params$Q7FU`
+:::
+
+###### 7. Other specified (if applicable)
+::: {.blackbox data-latex=""}
+`r params$Q7FU_other`
+:::
+::::
+
+\  
+
+:::: {.graybox data-latex=""}
+###### 8. Did you participate in any of the following in 2020?
+::: {.blackbox data-latex=""}
+`r params$Q8FU`
+:::
+
+###### 8. Other specified (if applicable)
+::: {.blackbox data-latex=""}
+`r params$Q8FU_other`
+:::
+::::
+
+\  
+
+:::: {.graybox data-latex=""}
+###### 9. We implemented the following interventions to increase HPV vaccination in 2020:
+::: {.blackbox data-latex=""}
+`r params$Q9FU`
+:::
+
+###### 9. Other specified (if applicable)
+::: {.blackbox data-latex=""}
+`r params$Q9FU_other`
+:::
+::::
+
+\  
+
+###### 10. How many providers did we train?
+::: {.blackbox data-latex=""}
+`r params$Q10FU`
+:::
+
+###### 11. What was the average number of training hours per provider?
+::: {.blackbox data-latex=""}
+`r params$Q11FU`
+:::
+
+###### 12. How many other staff did we educate?
+::: {.blackbox data-latex=""}
+`r params$Q12FU`
+:::
+
+\  
+
+:::: {.graybox data-latex=""}
+###### 13. We used the following tools and resources:
+::: {.blackbox data-latex=""}
+`r params$Q13FU`
+:::
+
+###### 13. Other specified (if applicable)
+::: {.blackbox data-latex=""}
+`r params$Q13FU_other`
+:::
+::::
+
+\  
+
+:::: {.graybox data-latex=""}
+###### 14. What roles did ACS play in this project?
+::: {.blackbox data-latex=""}
+`r params$Q14FU`
+:::
+
+###### 14. Other specified (if applicable)
+::: {.blackbox data-latex=""}
+`r params$Q14FU_other`
+:::
+::::
+
+\  
+
+###### 15. What were the successes and challenges of this project?
+::: {.blackbox data-latex=""}
+`r params$Q15FU`
+:::
+
+###### 16. What is our plan to sustain the changes we made in this project?
+::: {.blackbox data-latex=""}
+`r params$Q16FU`
+:::
+
+###### 17. Is there anything else to add about this project?
+::: {.blackbox data-latex=""}
+`r params$Q17FU`
+:::
+
+\  
+
+:::: {.graybox data-latex=""}
+###### 18. Will our system continue to work with ACS to increase our HPV vaccination rates?
+::: {.blackbox data-latex=""}
+`r params$Q18FU`
+:::
+
+###### 18. Additional text (if applicable)
+::: {.blackbox data-latex=""}
+`r params$Q18FU_more`
+:::
+::::
+
+\  
+\  
+

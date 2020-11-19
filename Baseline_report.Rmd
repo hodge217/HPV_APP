@@ -1,0 +1,805 @@
+---
+title: "Baseline HPV Vaccination 2021 Project Report"
+output: 
+  html_document:
+    df_print: paged
+    code_foldering: hide
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+
+params:
+  HealthSystem: NA
+  Q1_DBA: NA
+  Q2: NA
+  Q2_other: NA
+  Q3: NA
+  Q4a: NA
+  Q4b: NA
+  Q4c: NA
+  Q5: NA
+  Q5_Email: NA
+  Q6: NA
+  Q7: NA
+  Q8: NA
+  Q8_Email: NA
+  Q9: NA
+  Q10: NA
+  Q10_other: NA
+  Q11: NA
+  Q11_other: NA
+  Q12: NA
+  Q12_other: NA
+  Q13: NA
+  Q13_amount: NA
+  Q13_source: NA
+  Q13_date: NA
+  Q13_length: NA
+  Q14: NA
+  Q14_other: NA
+  
+  Q15: NA
+  Q15_other: NA
+  Q15_EHRversion: NA
+  Q16: NA
+  Q17: NA
+  Q18: NA
+  Q19: NA
+  Q20: NA
+  Q20_notes: NA 
+  Q20_orders: NA
+  Q20_other: NA
+  Q21: NA
+  Q21_text: NA
+  Q22: NA
+  Q22_notes: NA
+  Q23: NA
+  Q23_notes: NA 
+  Q24: NA
+  Q24_years: NA
+  Q25: NA 
+  Q26: NA
+  Q26_other: NA
+  
+  Q1R: NA
+  Q1R_other: NA
+  Q2R: NA
+  Q2R_other: NA
+  Q3R: NA
+  Q4R: NA
+  FemAge1_total: NA
+  FemAge1_dose1: NA
+  FemAge1_dose2: NA      
+  MenAge1_total: NA
+  MenAge1_dose1: NA
+  MenAge1_dose2: NA     
+  BothAge1_total: NA     
+  BothAge1_dose1: NA     
+  BothAge1_dose2: NA     
+  FemAge2_total: NA     
+  FemAge2_dose1: NA      
+  FemAge2_dose2: NA      
+  FemAge2_mening: NA     
+  FemAge2_tdap: NA      
+  MenAge2_total: NA     
+  MenAge2_dose1: NA      
+  MenAge2_dose2: NA      
+  MenAge2_mening: NA    
+  MenAge2_tdap: NA       
+  BothAge2_total: NA     
+  BothAge2_dose1: NA     
+  BothAge2_dose2: NA    
+  BothAge2_mening: NA    
+  BothAge2_tdap: NA
+  FemAge3_total: NA
+  FemAge3_dose1: NA
+  FemAge3_dose2: NA
+  FemAge3_mening: NA
+  FemAge3_tdap: NA
+  MenAge3_total: NA     
+  MenAge3_dose1: NA
+  MenAge3_dose2: NA
+  MenAge3_mening: NA
+  MenAge3_tdap: NA      
+  BothAge3_total: NA
+  BothAge3_dose1: NA
+  BothAge3_dose2: NA
+  BothAge3_mening: NA
+  BothAge3_tdap: NA
+  Q5R: NA
+  Q5R_other: NA
+  Q6R: NA  
+  Q6R_details: NA
+  Q6R_other: NA
+  Q7R: NA
+  Q7R_other: NA      
+  Q8R: NA
+  
+  Q9R: NA
+  Q9R_other: NA
+  Q10aR: NA
+  Q10bR: NA
+  Q10cR: NA
+  Q10dR: NA
+  Q10eR: NA
+  Q10fR: NA
+  Q11R: NA
+  Q12R: NA
+  Q12R_other: NA
+  Q13R: NA
+  Q13R_other: NA
+  Q14R: NA
+  Q15R: NA
+  Q16R: NA
+  act1: NA
+  act2: NA
+  act3: NA
+  act4: NA
+  act5: NA
+  act6: NA
+  act7: NA
+  act8: NA
+  act9: NA
+  act10: NA
+  ppl1: NA
+  ppl2: NA
+  ppl3: NA
+  ppl4: NA
+  ppl5: NA
+  ppl6: NA
+  ppl7: NA
+  ppl8: NA
+  ppl9: NA
+  ppl10: NA
+  time1: NA
+  time2: NA
+  time3: NA
+  time4: NA
+  time5: NA
+  time6: NA
+  time7: NA
+  time8: NA
+  time9: NA
+  time10: NA
+  
+  
+
+---
+
+<style type="text/css">
+
+body{ /* Whole document */
+      font-size: 16px;
+      color: Gray;
+      }
+h1.title{
+      font-size: 32px;
+      color: Black;
+      }
+h1{
+      font-size: 42px;
+      color: Black;
+      }
+h2{ 
+      font-size: 28px;
+      color: DarkRed;
+      }
+h3{ 
+      font-size: 28px;
+      color: Red;
+      }
+h5{ 
+      font-size: 16px;
+      color: Gray;
+      }      
+h6{ 
+      font-size: 16px;
+      color: Black;
+      font-weight: bold;
+      }
+pre{ /* Code block- determines spacing between lines */
+      font-size: 14px;
+      }   
+code.r{
+  font-size: 16px;
+  color: Gray
+  font-family: "Times New Roman", Times, serif;
+  margin-bottom:3em;
+}
+p:first-of-type{
+      font-style: italic;
+      color: Gray;
+      font-size: 16px;
+}
+.blackbox{
+  padding: 1em 0em 0em 1em;
+  color: white;
+  border: 2px solid gray;
+  border-radius: 10px;
+}
+.graybox{
+  padding: 1em 1em 1em 1em;
+  color: gray;
+  border: 2px solid blue;
+  border-radius: 10px;
+}
+.yellowhighlight{
+  padding: 1em 1em 1em 1em;
+  color: yellow;
+  border: 5px solid yellow;
+  border-radius: 10px;
+}
+</style>
+
+```{css, echo=FALSE}
+.answers {
+  background-color: white;
+  border: 3px solid black;
+  font-weight: bold;
+  color: light-gray;
+  font-family: "Times New Roman", Times, serif;
+}
+```
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(comment = NA)
+knitr::opts_chunk$set(opts.label="kill_prefix")
+```
+
+
+\ 
+\  
+
+\  
+
+![logo](Logos/ACS-Mission HPV_RGB.png)
+
+<center><h1> **HPV SASI Dashboard** </h1></center>
+
+\ 
+\  
+<h5>This is an html print-out of the baseline questionnaire on the Mission HPV dashboard. Please fill out all answers on the dashboard form and submit your responses there; this report is purely for your records and internal distribution. 
+<br><br>
+If you would like to print this as a pdf, right click on this screen to print. In the print options, select 'Save as pdf' and save the file to your preferred location. <br><br>
+Jennifer & team- let me know what other information you'd like here :)  
+</h5>
+
+\  
+\  
+
+\n
+
+### Demographics  
+<h5>First, let's get some more information about your clinic and its demographics.</h5>  
+
+\  
+
+###### 1. System Name
+::: {.blackbox data-latex=""}
+`r params$HealthSystem`
+:::
+
+###### 1b. Doing Business as (DBA)
+::: {.blackbox data-latex=""}
+`r params$Q1_DBA`
+:::
+
+###### 2. Health System type?
+::: {.blackbox data-latex=""}
+`r params$Q2`
+:::
+
+###### 3.Total number of clinic sites in system
+::: {.blackbox data-latex=""}
+`r params$Q3`
+:::
+\  
+
+:::: {.graybox data-latex=""}
+###### 4a. City
+::: {.blackbox data-latex=""}
+`r params$Q4a` 
+:::
+
+
+###### 4b. State
+::: {.blackbox data-latex=""}
+`r params$Q4b`
+:::
+
+
+###### 4c. Zipcode
+::: {.blackbox data-latex=""}
+`r params$Q4c`
+:::
+::::
+\  
+
+###### 5. Name and title of Health System project lead
+::: {.blackbox data-latex=""}
+`r params$Q5`
+:::
+
+###### 6. Name and title of Health System QI lead
+::: {.blackbox data-latex=""}
+`r params$Q6`
+:::
+
+
+###### 7. Name and title of project clinical champion
+::: {.blackbox data-latex=""}
+`r params$Q7`
+:::
+
+
+###### 8. Name of an ACS lead
+::: {.blackbox data-latex=""}
+`r params$Q8`
+:::
+
+
+###### 8b. Email for ACS lead
+::: {.blackbox data-latex=""}
+`r params$Q8_Email`
+:::
+
+
+###### 9. Other ACS staff involved in the project
+::: {.blackbox data-latex=""}
+`r params$Q9`
+:::
+\  
+
+:::: {.graybox data-latex=""}
+###### 10. Are all clinic sites in the system participating in this project?
+::: {.blackbox data-latex=""}
+`r params$Q10`
+:::
+
+
+###### 10. Other specified (only applicable if answered 'No' above)
+::: {.blackbox data-latex=""}
+`r params$Q10_other`
+:::
+::::
+\  
+
+:::: {.graybox data-latex=""}
+###### 11. Which service lines are participating in this HPV vaccination project?
+::: {.blackbox data-latex=""}
+`r params$Q11`
+:::
+
+
+###### 11a. Other specified
+::: {.blackbox data-latex=""}
+`r params$Q11_other`
+:::
+::::
+\  
+
+:::: {.graybox data-latex=""}
+###### 12. Are any of the following types of clinics participating in this HPV vaccination project?
+::: {.blackbox data-latex=""}
+`r params$Q12`
+:::
+
+###### 12. Other specified (if chose 'Other' above)
+::: {.blackbox data-latex=""}
+`r params$Q12_other`
+:::
+::::
+
+\  
+
+:::: {.graybox data-latex=""}
+###### 13. Does this project have any project-specific funding?
+::: {.blackbox data-latex=""}
+`r params$Q13`
+:::
+
+
+###### 13. Amount (only applicable if said 'yes' to project-specific funding source)
+::: {.blackbox data-latex=""}
+`r params$Q13_amount`
+:::
+
+
+###### 13. Source (only applicable if said 'yes' to project-specific funding source)
+::: {.blackbox data-latex=""}
+`r params$Q13_source`
+:::
+
+
+###### 13. Date (only applicable if said 'yes' to project-specific funding source)
+::: {.blackbox data-latex=""}
+`r params$Q13_date`
+:::
+
+
+###### 13. Length (only applicable if said 'yes' to project-specific funding source)
+::: {.blackbox data-latex=""}
+`r params$Q13_length`
+:::
+::::
+
+\ 
+
+:::: {.graybox data-latex=""}
+###### 14. Is this project part of...?
+::: {.blackbox data-latex=""}
+`r params$Q14`
+:::
+
+
+###### 14. Other specified (if selected 'Other' above)
+::: {.blackbox data-latex=""}
+`r params$Q14_other`
+:::
+::::
+
+\  
+\  
+
+\n
+
+### System Background
+
+<h5>Now, you'll provide information on the data systems your health system uses. Please complete this information to the best of your knowledge.</h5>
+
+\  
+
+:::: {.graybox data-latex=""}
+###### 15. EHR System
+::: {.blackbox data-latex=""}
+`r params$Q15`
+:::
+
+###### 15. Other specified (if applicable)
+::: {.blackbox data-latex=""}
+`r params$Q15_other`
+:::
+::::
+
+\  
+
+###### 16. Populatoin management system and version
+::: {.blackbox data-latex=""}
+`r params$Q16`
+:::
+
+###### 17. Our system is currently set up to:
+::: {.blackbox data-latex=""}
+`r params$Q17`
+:::
+
+###### 18. At this moment, our EHR system has:
+::: {.blackbox data-latex=""}
+`r params$Q18`
+:::
+
+###### 19. At this moment, our State Immunization Registry:
+::: {.blackbox data-latex=""}
+`r params$Q19`
+:::
+
+###### 20. Does your system have standing orders for HPV vaccination?
+::: {.blackbox data-latex=""}
+`r params$Q20`
+:::
+
+###### 21. Are patients scheduled for the next HPV vaccination visit before they leave the office?
+::: {.blackbox data-latex=""}
+`r params$Q21`
+:::
+
+###### 22. If the HPV vaccine is declined, is it system policy to recommend it again at future visits?
+::: {.blackbox data-latex=""}
+`r params$Q22`
+:::
+
+###### 23. Has your system used quality improvement to increase HPV vaccination rates in the past?
+::: {.blackbox data-latex=""}
+`r params$Q23`
+:::
+
+###### 24. Has your system completed a HPV VACs Systems and Strategies Inventory with ACS in the past?
+::: {.blackbox data-latex=""}
+`r params$Q24`
+:::
+
+###### 25. Which of the following training and education activities has your system already conducted to increase HPV vaccination rates? *(with or without support from ACS)*
+::: {.blackbox data-latex=""}
+`r params$Q25`
+:::
+
+\  
+
+:::: {.graybox data-latex=""}
+###### 26. Which of the following interventions to increase HPV vaccination has your system already implemented? *(with or without support from ACS)*
+::: {.blackbox data-latex=""}
+`r params$Q26`
+:::
+
+###### 26. Other specified (if applicable)
+::: {.blackbox data-latex=""}
+`r params$Q26_other`
+:::
+::::
+
+
+\  
+\  
+
+\n
+
+### Vaccination Rates
+
+<h5>Calculate **baseline** vaccination rates as the number of active medical patients ages 9-13 who were up-to-date with HPV, TDap, and Meningococcal vaccines in 2020. Separate vaccine rates by vaccine, age and sex (if possible). **If unable to separate by sex**, enter the vaccination rates data **for males and females combined.**</h5>
+
+\ 
+
+:::: {.graybox data-latex=""}
+###### 1. How are you defining your active patient populations?
+::: {.blackbox data-latex=""}
+`r params$Q1R`
+:::
+
+###### 1. Other specified (if applicable)
+::: {.blackbox data-latex=""}
+`r params$Q1R_other`
+:::
+::::
+
+\  
+
+###### 2. For what ages are you reporting?
+::: {.blackbox data-latex=""}
+`r params$Q2R`
+:::
+
+###### 3. Can you pull rate data by sex?
+::: {.blackbox data-latex=""}
+`r params$Q3R`
+:::
+
+\  
+
+###### Ages 9-10
+```{r, echo=FALSE, results="asis"}
+rates1 <- data.frame(rbind(c(params$FemAge1_total, params$FemAge1_dose1, params$FemAge1_dose2),
+                           c(params$MenAge1_total, params$MenAge1_dose1, params$MenAge1_dose2),
+                           c(params$BothAge1_total, params$BothAge1_dose1, params$BothAge1_dose2)))
+
+rownames(rates1)<- c("Females", "Males", "Combined")
+colnames(rates1)<- c("Total", "1+ dose", "2 doses")
+knitr::kable(rates1)
+```
+
+###### Ages 11-12
+```{r, echo=FALSE, results="asis"}
+rates2 <- data.frame(rbind(c(params$FemAge2_total, params$FemAge2_dose1, params$FemAge2_dose2, params$FemAge2_mening, params$FemAge2_tdap),
+                           c(params$MenAge2_total, params$MenAge2_dose1, params$MenAge2_dose2, params$MenAge2_mening, params$MenAge2_tdap),
+                           c(params$BothAge2_total, params$BothAge2_dose1, params$BothAge2_dose2, params$BothAge2_mening, params$BothAge2_tdap)))
+
+rownames(rates2)<- c("Females", "Males", "Combined")
+colnames(rates2)<- c("Total", "1+ dose", "2 doses", "Meningococcus", "Tdap")
+knitr::kable(rates2)
+```
+
+###### Ages 13
+```{r, echo=FALSE, results="asis"}
+rates3 <- data.frame(rbind(c(params$FemAge3_total, params$FemAge3_dose1, params$FemAge3_dose2, params$FemAge3_mening, params$FemAge3_tdap),
+                           c(params$MenAge3_total, params$MenAge3_dose1, params$MenAge3_dose2, params$MenAge3_mening, params$MenAge3_tdap),
+                           c(params$BothAge3_total, params$BothAge3_dose1, params$BothAge3_dose2, params$BothAge3_mening, params$BothAge3_tdap)))
+
+rownames(rates3)<- c("Females", "Males", "Combined")
+colnames(rates3)<- c("Total", "1+ dose", "2 doses", "Meningococcus", "Tdap")
+knitr::kable(rates3)
+```
+
+\  
+
+
+
+###### 4. Please share anything else about your baseline data you'd like us to know:
+::: {.blackbox data-latex=""}
+`r params$Q4R`
+:::
+
+\  
+
+:::: {.graybox data-latex=""}
+###### 5. What was the primary data source used to calculate your vaccination rates?
+::: {.blackbox data-latex=""}
+`r params$Q5R`
+:::
+
+###### 5. Other specified (if applicable)
+::: {.blackbox data-latex=""}
+`r params$Q5R_other`
+:::
+::::
+
+\  
+
+:::: {.graybox data-latex=""}
+###### 6. Did you use a secondary data source?
+::: {.blackbox data-latex=""}
+`r params$Q6R`
+:::
+
+###### 6. What secondary sources were used (select all that apply)? (if applicable)
+::: {.blackbox data-latex=""}
+`r params$Q6R_details`
+:::
+
+###### 6. Other specified (if applicable)
+::: {.blackbox data-latex=""}
+`r params$Q6R_other`
+:::
+::::
+
+\  
+
+:::: {.graybox data-latex=""}
+###### 7. Were you unable to report any of the requested data?
+::: {.blackbox data-latex=""}
+`r params$Q7R`
+:::
+
+###### 7. Describe what you were unable to report and why
+::: {.blackbox data-latex=""}
+`r params$Q7R_other`
+:::
+::::
+
+\  
+
+###### 8. Are you working on your reporting capacity and anticipate submitting updated data in the next few months?
+::: {.blackbox data-latex=""}
+`r params$Q8R`
+:::
+
+\  
+\  
+
+\n
+
+### Project Activity Plan
+
+<h5>This last section will prompt you about your project activity plan.</h5>
+
+\ 
+
+:::: {.graybox data-latex=""}
+###### 9. What other data do we need to obtain before establishing our goal?
+::: {.blackbox data-latex=""}
+`r params$Q9R`
+:::
+
+###### 9. Other specified (if applicable)
+::: {.blackbox data-latex=""}
+`r params$Q9R_other`
+:::
+::::
+
+\  
+
+:::: {.graybox data-latex=""}
+###### 10a. What is our specific numerical goal?
+::: {.blackbox data-latex=""}
+`r params$Q10aR`
+:::
+
+###### 10b. What is our target population?
+::: {.blackbox data-latex=""}
+`r params$Q10bR`
+:::
+
+###### 10c. Where will we do it?
+::: {.blackbox data-latex=""}
+`r params$Q10cR`
+:::
+
+
+###### 10d. What is the time period to achieve this aim?
+::: {.blackbox data-latex=""}
+`r params$Q10dR`
+:::
+
+###### 10e. Why is it important to do this now?
+::: {.blackbox data-latex=""}
+`r params$Q10eR`
+:::
+::::
+
+\  
+
+:::: {.yellowhighlight data-latex=""}
+###### 10f. Now, combine the above into a single **Aim** statement
+::: {.blackbox data-latex=""}
+**We aim to...**
+`r params$Q10fR`
+:::
+::::
+
+\  
+
+###### 11. Which of the following HPV vaccination training and education actitivities will we conduct?
+::: {.blackbox data-latex=""}
+`r params$Q11R`
+:::
+
+\  
+
+:::: {.graybox data-latex=""}
+###### 12. Which of the following interventions to increase HPV vaccination will we implement?
+::: {.blackbox data-latex=""}
+`r params$Q12R`
+:::
+
+###### 12. Other specified (if applicable)
+::: {.blackbox data-latex=""}
+`r params$Q12R_other`
+:::
+::::
+
+\  
+
+:::: {.graybox data-latex=""}
+###### 13. What forms of support would the health system like from the ACS staff partner?
+::: {.blackbox data-latex=""}
+`r params$Q13R`
+:::
+
+###### 13. Other specified (if applicable)
+::: {.blackbox data-latex=""}
+`r params$Q13R_other`
+:::
+::::
+
+\  
+
+###### 14. How will we communicate with providers, staff, and leadership about project kickoff, goal and updates?
+::: {.blackbox data-latex=""}
+`r params$Q14R`
+:::
+
+###### 15. How will we build and maintain excitement and momentum for the project?
+::: {.blackbox data-latex=""}
+`r params$Q15R`
+:::
+
+###### 16. How will we celebrate and share success?
+::: {.blackbox data-latex=""}
+`r params$Q16R`
+:::
+
+###### 17. What specific actions will we take to implement the above interventions and trainings to meet our goal?
+```{r, echo=FALSE, results="asis"}
+table<- data.frame(rbind(c(params$act1, params$time1, params$ppl1),
+                           c(params$act2, params$time2, params$ppl2),
+                           c(params$act3, params$time3, params$ppl3),
+                           c(params$act4, params$time4, params$ppl4),
+                           c(params$act5, params$time5, params$ppl5),
+                           c(params$act6, params$time6, params$ppl6),
+                           c(params$act7, params$time7, params$ppl7),
+                           c(params$act8, params$time8, params$ppl8),
+                           c(params$act9, params$time9, params$ppl9),
+                           c(params$act10, params$time10, params$ppl10)))
+
+table <- table[!apply(is.na(table) | table =="", 1, all), ]
+
+names(table)<- c("Activity", "Timeline", "Person/People Responsible")
+knitr::kable(table)
+```
+
+\  
+
+
+
+
+\  
+\  
+

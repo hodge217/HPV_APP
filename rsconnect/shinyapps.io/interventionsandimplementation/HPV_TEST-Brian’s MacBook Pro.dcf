@@ -1,0 +1,13 @@
+name: HPV_TEST
+title: HPV_TEST
+username:
+account: interventionsandimplementation
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2904107
+bundleId: 3860508
+url: https://interventionsandimplementation.shinyapps.io/HPV_TEST/
+when: 1605372384.26211
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: .DB|.httr-oauth|.RData|Data Dictionary.xlsx|Feedback on SHINY 11.4 version_BH.docx|monitoringApp.R|Backups/app - backup 11Nov2020.R|Backups/app - pre variable name changes.R|Backups/app 3Nov2020.R|Backups/Create input Data.R|Backups/Initialize Database.R|exampleApp/.DS_Store|exampleApp/app.R|exampleApp/monthlyUpdate.DB|drafts

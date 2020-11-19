@@ -21,8 +21,6 @@ rm(list=ls())
 
 
 
-# I am making changes in buddha2490 and want to push them to the acs-berg team account
-
 
 
 # Production URLs

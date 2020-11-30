@@ -19,13 +19,7 @@ library(grid)
 rm(list=ls())
 
 
-
-
-# I am making changes in buddha2490 and want to push them to the acs-berg team account
-
-# This change is on the bcarter2490 account.
-
-# Now I'm adding something to buddha2490
+### Here is a change I want to see if becky gets it - 11/30/2020
 
 
 # Production URLs
@@ -394,8 +388,8 @@ ui = dashboardPage(
             HTML("<br>"),
             h4("CUSTOMIZING YOUR VACCINATION RATE TABLES:"),
             helpText("We strongly encourage you to report vaccination rates separated by sex and specific age groupings (9-10, 11-12, and 13).
-                      We recognize this may not always be possible. If you can only report on specific ages or data for males and females combined, use the following
-                      menu to specify which data entry tables are visible."
+                      We recognize this may not always be possible. Use the following question prompts to customize the data entry tables you need. ",
+                     strong("Once you respond to all the following prompts, your data table(s) will appear below.")
                      ),
             HTML("<br>"),
             
@@ -403,9 +397,9 @@ ui = dashboardPage(
             splitLayout(
               uiOutput("Q27"), uiOutput("Q27_other")
             ),
-            splitLayout(
-              uiOutput("Q28"), uiOutput("Q28_other")
-            ),
+            uiOutput("Q28"), 
+            uiOutput("Q28_other"),
+            uiOutput("Q28_other_message"),
             uiOutput("Q29"),
             HTML("<br>"),
             
@@ -557,7 +551,7 @@ ui = dashboardPage(
             HTML("<br>"),
             h4("Once you've reviewed your data..."),
             helpText(p("Hit the submit button below to send the finalized data to the ACS Interventions & Implementations Team (formerly VACs).", style="color:red")),
-            helpText("If you have any questions, please contact ", a("Jennifer Ischer-Witt", href = "mailto:Jennifer.Ish@cancer.org")),
+            helpText("If you have any questions, please contact ", a("Jennifer Isher-Witt", href = "mailto:Jennifer.Ish@cancer.org")),
                     actionButton("button_baseline_final", "SUBMIT FINAL DATA", class="btn-danger"),
                     HTML("<br>"),
                     helpText(em("*Please note that it is possible to return to this page and resubmit if need be. Any changes made after hitting the above button will not be conveyed to the ACS interventions team
@@ -657,9 +651,10 @@ ui = dashboardPage(
             ),
             HTML("<br>"),
             h4("CUSTOMIZING YOUR VACCINATION RATE TABLES:"),
-            helpText("We strongly encourage you to report vaccination rates separated by sex and specific age groupings (9-10, 11-12, and 13).
-                      We recognize this may not always be possible. If you can only report on specific ages or data for males and females combined, use the following
-                      menu to specify which data entry tables are visible."
+            helpText(strong("We strongly recommend you use the same active patient population, ages, and data sources as your baseline data. "),
+                     "For baseline data, we encouraged you to report vaccination rates separated by sex and specific age groupings (9-10, 11-12, and 13).
+                      We recognize this may not always be possible. Use the following question prompts to customize the data entry tables you need.",
+                     strong("Once you respond to all the following prompts, your data table(s) will appear below.")
                      ),
             HTML("<br>"),
             # These go AFTER the instructions but before the rates
@@ -683,7 +678,6 @@ ui = dashboardPage(
             uiOutput("Q4FU"),
             HTML("<br>"),
             p("Please hit the save button below in order to save your responses and have them repopulate should you exit from this browser and return at a later date. Otherwise, your entered responses will disappear when you exit this browser.", style = "color:green"),
-
             actionButton("button_fwup_rates", "Save and finish later", class =
                            "btn-primary"),
             textOutput("error_rates_fwup")
@@ -743,12 +737,13 @@ ui = dashboardPage(
             helpText("Now that you've entered your fina data, please download your final report to check your answers, and also as a copy for your records.
                       Any responses left blank will appear blank."),
             HTML("<br>"),
-            downloadButton("final_report", "Download follow-up report"),
+            downloadButton("final_report", "Download final report"),
             HTML("<br>"),
             HTML("<br>"),
             h4("Once you've reviewed your data..."),
             helpText(p("Hit the submit button below to send the finalized data to the ACS Interventions & Implementations team.", style="color:red")),
-                    actionButton("button_fwup_final", "SUBMIT FINAL FOLLOW-UP DATA", class="btn-danger"),
+                    helpText("If you have any questions, please contact ", a("Jennifer Isher-Witt", href = "mailto:Jennifer.Ish@cancer.org")),
+                    actionButton("button_fwup_final", "SUBMIT FINAL DATA", class="btn-danger"),
                     HTML("<br>"),
                     helpText(em("*Please note that it is possible to return to this page and resubmit if need be. Any changes made after hitting the above button will not be conveyed to the ACS interventions team
                                  unless you hit this button again and resubmit the data.")),
@@ -783,7 +778,7 @@ ui = dashboardPage(
                                     
                                     # Select Sex
                                     selectInput(inputId = "mu_sex",
-                                                label = "Will you enter data by sex (males and females separate) or combined?",
+                                                label = "Will you enter data by sex (males and females separately) or combined?",
                                                 choices = c("Males",
                                                             "Females",
                                                             "Combined"),
@@ -826,7 +821,16 @@ ui = dashboardPage(
                               HTML("<br><br>"),
                               plotOutput("allPlots", height = "600px")
                               
-                     ) # end tab panel 1
+                     ), # end tab panel 1 (monthly updates)
+                     
+                     
+                     tabPanel(title="Clinic-level data entry",
+                              h2("Clinic-level data entry"),
+                              HTML("<br>"),
+                              helpText("You can use this dashboard to enter clinic-level data updates and track your progress through the year."),
+                              HTML("<br>")
+                              
+                              ) # end clinic-level data entry
               ) # end tab box
       ), # end tab home
       
@@ -840,9 +844,9 @@ ui = dashboardPage(
         "fuDashboard",
         h2("HPV Vaccination Data Tracker: Final Data", align = "center"),
         helpText(
-          "This section is designed to help ACS staff and partners tract and visualize data collected
+          "This section is designed to help ACS staff and partners track and visualize data collected
                  during HPV vaccination quality improvement projects.  Additional tabs are provided for monthly
-                 and site-level monitoring."
+                  monitoring under the Optional Data button in the left-hand menu."
         ),
         HTML("<br><br>"),
         
@@ -858,25 +862,25 @@ ui = dashboardPage(
                 strong("Systems and Strategies Inventory (SASI)")
               ),
               tags$li(
-                "This tab is intended to monitor the final update data entered in the followup survey."
+                "This tab is intended to monitor the final update data entered in the final survey."
               ),
               tags$li(
-                "Each of the following charts will aggregate all followup data for each health system"
+                "Each of the following charts will aggregate all final data for each health system"
               ),
               tags$li("You can drag each chart to your desktop and share with your partner!")
             ),
             HTML("<br><br>"),
             h4("Charts"),
             helpText(
-              "Consider sharing this back with each health systems following the submissiong of
-                                 your followup data. Use this to see if there are any changes the system can make prior
+              "Consider sharing this back with each health systems following the submission of
+                                 your final data. Use this to see if there are any changes the system can make prior
                                  to the start of vaccine season in June."
             ),
             HTML("<br><br>"),
             verticalLayout(
               h4("Vaccination rates from baseline to final update", align = "center"),
               helpText(
-                "These charts use the baseline and followup data you have provided throughout
+                "These charts use the baseline and final data you have provided throughout
                                    the data collection process and are aggregated for each health system and update
                                    period.  Data are presented for males, females, and combined."
               ),
@@ -2059,12 +2063,12 @@ tags$p(Sys.Date(), style="font-size: 150%;"),
         choices = c("9-10",
                     "11-12",
                     "13",
-                    "We can't report on these ages (other, please specify)?"),
+                    "We can't report on these ages (other, please specify)"),
         selected = foo28)
     })
     output$Q28_other <- renderUI({
       validate(need(input$Q28, ""))
-      if ("We can't report on these ages (other, please specify)?" %in% input$Q28) {
+      if ("We can't report on these ages (other, please specify)" %in% input$Q28) {
         textInput(
           inputId = "Q28_other",
           label = "Please specify",
@@ -2075,6 +2079,14 @@ tags$p(Sys.Date(), style="font-size: 150%;"),
       } else {
         return(NULL)
       }
+    })
+    
+    # Include message about how they should contact Jennifer to resolve this issue
+    output$Q28_other_message <- renderUI({
+      validate(need(!("We can't report on these ages (other, please specify)" %in% input$Q28),
+                  "Please contact Jennifer Isher-Witt at Jennifer.Ish@cancer.org to resolve this issue"
+        ), errorClass = "red_warnings"
+        )
     })
     
     output$Q29 <- renderUI({
@@ -2293,7 +2305,7 @@ tags$p(Sys.Date(), style="font-size: 150%;"),
             return(rate)
           }
         })
-      }
+      } 
       
       # Ages 9-10, combined
       if ("9-10" %in% input$Q28 &
@@ -2388,6 +2400,12 @@ tags$p(Sys.Date(), style="font-size: 150%;"),
               paste0(rate, "% vaccination rate in this age group.")
             return(rate)
           }
+        })
+      }
+      
+      if (!("9-10" %in% input$Q28)) {
+        output$brates_9_10<- renderUI({
+          return()
         })
       }
       
@@ -2589,6 +2607,7 @@ tags$p(Sys.Date(), style="font-size: 150%;"),
           )
             )) # end split and vertical layout
         })
+        
         output$FemAge2_dose1_rate <- renderText({
           validate(need(input$FemAge2_total, ""))
           if (is.na(input$FemAge2_dose1)) {
@@ -2843,6 +2862,12 @@ tags$p(Sys.Date(), style="font-size: 150%;"),
             rate <-
               paste0(rate, "% vaccination rate in this age group")
           }
+        })
+      }
+      
+      if (!("11-12" %in% input$Q28)) {
+        output$brates_11_12<- renderUI({
+          return()
         })
       }
     }) # end the 11-12 observation
@@ -3296,6 +3321,12 @@ tags$p(Sys.Date(), style="font-size: 150%;"),
             rate <-
               paste0(rate, "% vaccination rate in this age group")
           }
+        })
+      }
+      
+      if (!("13" %in% input$Q28)) {
+        output$brates_13<- renderUI({
+          return()
         })
       }
       
@@ -4700,7 +4731,7 @@ tags$p(Sys.Date(), style="font-size: 150%;"),
                  type="error", showConfirmButton = FALSE, showCancelButton = TRUE)
 
     } else {
-      shinyalert(title="Confirm submit", text="You are about to submit the follow-up information for your health system. Have you checked and confirmed you've answered every question and your answers are correct?",
+      shinyalert(title="Confirm submit", text="You are about to submit the final information for your health system. Have you checked and confirmed you've answered every question and your answers are correct?",
                  type="warning", showCancelButton=TRUE, showConfirmButton = TRUE, closeOnClickOutside=FALSE,
                  closeOnEsc= FALSE, confirmButtonText = "Submit", cancelButtonText="Cancel (go back to review)",
                  inputId="bline_shinyalert")
@@ -7400,7 +7431,7 @@ if (condition == 1) {
       # Figure 3 - HPV vaccination rates by age (1 dose vs 2 dose)
       output$conversationCorner3 <- renderText({
         paste(
-          "Remember that targetting 9-12 year olds during",
+          "Remember that targeting 9-12 year olds during",
           "<br/>",
           "the intervention year is how you improve rates",
           "<br/>",
@@ -7444,7 +7475,7 @@ if (condition == 1) {
       
       # Figure 1
       output$FUconversationCorner1 <- renderText({
-        "Don't be surprised if rates have not increase much in the <br/>
+        "Don't be surprised if rates have not increased much in the <br/>
           final updates.  Use this information to inform preparations <br/>
           for the summer vaccine season, a time when you can have the most impact <br/>
           on vaccination rates!"
@@ -7481,7 +7512,7 @@ if (condition == 1) {
       
       
       output$FUconversationCorner3 <- renderText({
-        "Where there increases in HPV vaccination rates? <br/><br/>
+        "Were there increases in HPV vaccination rates? <br/><br/>
           Did you see more movement with initiation or completion? <br/><br/>
           Was the cross-over impact on mening or tdap vaccination rates? <br/><br/>"
       })

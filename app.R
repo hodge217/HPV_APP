@@ -18,14 +18,8 @@ library(dbplyr)
 library(grid)
 rm(list=ls())
 
-# Made this comment just to check the branching thing - 11/30/2020
 
-
-# I am making changes in buddha2490 and want to push them to the acs-berg team account
-
-# This change is on the bcarter2490 account.
-
-# Now I'm adding something to buddha2490
+### Here is a change I want to see if becky gets it - 11/30/2020
 
 
 # Production URLs
